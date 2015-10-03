@@ -90,17 +90,6 @@ class PlaySoundsViewController: UIViewController {
         }catch{
             print("Problems getting the audio")
         }
-        /*
-        
-        if var audioPath = NSBundle.mainBundle().pathForResource(fileName, ofType:fileExtension){
-        //Transform String to NSURL
-        var audioURL = NSURL.fileURLWithPath(audioPath)
-        //Get audio
-        audioPlayer = AVAudioPlayer(contentsOfURL: audioURL, fileTypeHint: nil)
-        }
-        else{
-        print("Problems finding \(fileName).\(fileExtension)")
-        }*/
     }
     
     

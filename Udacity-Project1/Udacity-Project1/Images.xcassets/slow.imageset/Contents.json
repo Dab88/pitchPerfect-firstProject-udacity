@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "iphone",
+      "filename" : "slow.png",
       "scale" : "1x"
     },
     {
