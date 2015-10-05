@@ -33,13 +33,7 @@ class PlaySoundsViewController: UIViewController {
     override func viewWillAppear(animated: Bool){
         stopBtn.enabled = false
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+        
     //MARK: IBActions
     @IBAction func stopAudio(sender: AnyObject) {
         playMode(active: false)
@@ -78,7 +72,6 @@ class PlaySoundsViewController: UIViewController {
     
     
     //MARK: Logical Functions
-    
     func loadAudio(){
         
         audioEngine = AVAudioEngine()
@@ -98,9 +91,8 @@ class PlaySoundsViewController: UIViewController {
         //Previous configure
         playMode(active: true)
         
-        audioPlayer?.volume = 1.0 //self.volumeSlider.value
         audioPlayer?.enableRate = true
-        audioPlayer?.currentTime = 0.0 // For play the sound since the 0
+        audioPlayer?.currentTime = 0.0 // For play the sound since the second 0
         
         //Config rate
         audioPlayer?.rate = rate
@@ -121,7 +113,6 @@ class PlaySoundsViewController: UIViewController {
         let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
         audioEngine!.attachNode(changePitchEffect)
-        
         
         audioEngine!.connect(audioPlayerNode, to: changePitchEffect, format: nil)
         audioEngine!.connect(changePitchEffect, to: audioEngine!.outputNode, format: nil)
@@ -147,7 +138,6 @@ class PlaySoundsViewController: UIViewController {
         reverbEffect.loadFactoryPreset(AVAudioUnitReverbPreset.Cathedral)
         reverbEffect.wetDryMix = reverb
         audioEngine!.attachNode(reverbEffect)
-        
         
         //Echo effect
         let echoEffect = AVAudioUnitDelay()

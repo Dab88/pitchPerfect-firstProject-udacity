@@ -24,19 +24,10 @@ class RecordSoundsViewController: UIViewController {
     
     
     //MARK: App Cycle Life
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         recordingMode(active: false)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     //MARK: IBActions
     @IBAction func recordAudio(sender: AnyObject) {
@@ -77,24 +68,15 @@ class RecordSoundsViewController: UIViewController {
     
     
     @IBAction func restartRecordAudio(sender: UIButton) {
-        
         pauseMode(active: false)
-        
-        
     }
     
     
     //MARK:
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
         if (segue.identifier == "stopRecording"){
-            
             let playVC = segue.destinationViewController as! PlaySoundsViewController
-            
             playVC.recordReceivedAudio = recordedAudio
-            
         }
     }
     
@@ -138,11 +120,8 @@ extension RecordSoundsViewController: AVAudioRecorderDelegate{
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool){
         //Create a model RecordedAudio instance
-        recordedAudio = RecordedAudio()
-        recordedAudio?.filePathUrl = recorder.url
-        recordedAudio?.title = recorder.url.lastPathComponent
-        
-        self.performSegueWithIdentifier("stopRecording", sender: self)
+        recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent!)
+        performSegueWithIdentifier("stopRecording", sender: self)
     }
 }
 
